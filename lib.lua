@@ -173,7 +173,7 @@ local defaults; do
             return c
         end
         
-        function types:Label(text)
+        function types:Label(text, options)
             local v = game:GetService'TextService':GetTextSize(text, 18, Enum.Font.SourceSans, Vector2.new(math.huge, math.huge))
             local object = library:Create('Frame', {
                 Size = UDim2.new(1, 0, 0, v.Y + 5);
@@ -186,7 +186,7 @@ local defaults; do
                     Text = text;
                     TextSize = 18;
                     Font = Enum.Font.SourceSans;
-                    TextColor3 = Color3.fromRGB(255, 255, 255);
+                    TextColor3 = options.color or Color3.fromRGB(255, 255, 255);
                     BackgroundTransparency = 1;
                     TextXAlignment = Enum.TextXAlignment.Left;
                     TextWrapped = true;
