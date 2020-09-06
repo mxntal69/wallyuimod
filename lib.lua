@@ -175,35 +175,38 @@ local defaults; do
         
         function types:Label(text, options)
             local v = game:GetService'TextService':GetTextSize(text, 18, Enum.Font.SourceSans, Vector2.new(math.huge, math.huge))
+            
+            local label = library:Create('TextLabel', {
+                Size = UDim2.new(1, 0, 1, 0);
+                Position = UDim2.new(0, 10, 0, 0);
+                LayoutOrder = self:GetOrder();
+
+                Text = text;
+                TextSize = 18;
+                Font = Enum.Font.SourceSans;
+                TextColor3 = options.color or Color3.fromRGB(255, 255, 255);
+                BackgroundTransparency = 1;
+                TextXAlignment = Enum.TextXAlignment.Left;
+                TextWrapped = true;
+            });
+            
             local object = library:Create('Frame', {
                 Size = UDim2.new(1, 0, 0, v.Y + 5);
                 BackgroundTransparency  = 1;
-                library:Create('TextLabel', {
-                    Size = UDim2.new(1, 0, 1, 0);
-                    Position = UDim2.new(0, 10, 0, 0);
-                    LayoutOrder = self:GetOrder();
-
-                    Text = text;
-                    TextSize = 18;
-                    Font = Enum.Font.SourceSans;
-                    TextColor3 = options.color or Color3.fromRGB(255, 255, 255);
-                    BackgroundTransparency = 1;
-                    TextXAlignment = Enum.TextXAlignment.Left;
-                    TextWrapped = true;
-                });
+                label;
                 Parent = self.container
             })
             self:Resize();
 
             return {
                 SetText = function(self, text)
-                    object.Text = text;
+                    label.Text = text;
                 end,
                 SetColor = function(self, color)
-                    object.TextColor3 = color;
+                    label.TextColor3 = color;
                 end,
                 ResetColor = function(self)
-                    object.TextColor3 = Color3.fromRGB(255, 255, 255);
+                    label.TextColor3 = Color3.fromRGB(255, 255, 255);
                 end
             };
         end
@@ -215,7 +218,7 @@ local defaults; do
             local callback = callback or function() end;
             
             location[flag] = default;
-
+            
             local check = library:Create('Frame', {
                 BackgroundTransparency = 1;
                 Size = UDim2.new(1, 0, 0, 25);
