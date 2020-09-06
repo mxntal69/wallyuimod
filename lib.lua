@@ -198,10 +198,10 @@ local defaults; do
             return {
                 SetText = function(self, text)
                     object.Text = text;
-                end
+                end,
                 SetColor = function(self, color)
                     object.TextColor3 = color;
-                end
+                end,
                 ResetColor = function(self)
                     object.TextColor3 = Color3.fromRGB(255, 255, 255);
                 end
