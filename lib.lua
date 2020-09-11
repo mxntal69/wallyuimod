@@ -1062,16 +1062,18 @@ local defaults; do
 
     library.options = setmetatable({}, {__index = default})
 
-    spawn(function()
-        while true do
-            for i=0, 1, 1 / 300 do              
-                for _, obj in next, library.rainbowtable do
-                    obj.BackgroundColor3 = Color3.fromHSV(i, 1, 1);
-                end
-                wait()
-            end;
-        end
-    end)
+    if #(library.rainbowtable) > 0 then
+        coroutine.wrap(function()
+            while true do
+                for i=0, 1, 1 / 300 do              
+                    for _, obj in next, library.rainbowtable do
+                        obj.BackgroundColor3 = Color3.fromHSV(i, 1, 1);
+                    end
+                    wait()
+                end;
+            end
+        end)
+    end
 
     local function isreallypressed(bind, inp)
         local key = bind
