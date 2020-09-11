@@ -1,3 +1,5 @@
+local next = next;
+
 local library = {count = 0, queue = {}, callbacks = {}, rainbowtable = {}, toggled = true, binds = {}};
 local defaults; do
     local dragger = {}; do
@@ -1014,6 +1016,9 @@ local defaults; do
                 });
                 Parent = game:GetService("CoreGui");
             }):FindFirstChild('Container');
+            if syn then
+                syn.protect_gui(library.container);
+            end
         end
         
         if (not library.options) then
