@@ -1,4 +1,5 @@
 local next = next;
+local pcall = pcall;
 
 local library = {count = 0, queue = {}, callbacks = {}, rainbowtable = {}, toggled = true, binds = {}};
 local defaults; do
