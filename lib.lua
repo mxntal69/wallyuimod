@@ -117,11 +117,12 @@ local defaults; do
             
             if options.underlinecolor == "gradient" then
                 library:Create("UIGradient", {
-                    Name = "gradient",
-                    Rotation = 45,
+                    Rotation = 0,
                     Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(143, 48, 225)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 167, 245))},
+                    Enabled = true,
                     Parent = newWindow:FindFirstChild('Underline')
                 });
+                newWindow:FindFirstChild('Underline').BackgroundColor3 = Color3.fromRGB(255, 255, 255);
             end
 
             local window = setmetatable({
