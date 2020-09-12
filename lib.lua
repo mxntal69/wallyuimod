@@ -120,7 +120,7 @@ local defaults; do
                     Name = "gradient",
                     Rotation = 45,
                     Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(143, 48, 225)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 167, 245))},
-                    Parent = newWindow:FindFirstChild('Underline'))
+                    Parent = newWindow:FindFirstChild('Underline')
                 });
             end
 
