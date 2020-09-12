@@ -93,7 +93,7 @@ local defaults; do
                     Name = 'Underline';
                     Size = UDim2.new(1, 0, 0, 2);
                     Position = UDim2.new(0, 0, 1, -2);
-                    BackgroundColor3 = (options.underlinecolor ~= "rainbow" and options.underlinecolor or Color3.new());
+                    BackgroundColor3 = ((options.underlinecolor ~= "rainbow" and options.underlinecolor ~= "gradient") and options.underlinecolor or Color3.new());
                     BorderSizePixel = 0;
                     ZIndex = 3;
                 });
@@ -113,6 +113,15 @@ local defaults; do
             
             if options.underlinecolor == "rainbow" then
                 table.insert(library.rainbowtable, newWindow:FindFirstChild('Underline'))
+            end
+            
+            if options.underlinecolor == "gradient" then
+                library:Create("UIGradient", {
+                    Name = "gradient",
+                    Rotation = 45,
+                    Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(143, 48, 225)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 167, 245))},
+                    Parent = newWindow:FindFirstChild('Underline'))
+                });
             end
 
             local window = setmetatable({
