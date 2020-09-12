@@ -210,6 +210,10 @@ local defaults; do
                 end,
                 ResetColor = function(self)
                     label.TextColor3 = Color3.fromRGB(255, 255, 255);
+                end,
+                Destroy = function(self)
+                    object:Destroy();
+                    self:Resize();
                 end
             };
         end
@@ -274,6 +278,10 @@ local defaults; do
                     location[flag] = b;
                     callback(location[flag])
                     check:FindFirstChild(name).Checkmark.Text = location[flag] and utf8.char(10003) or "";
+                end,
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
                 end
             }
         end
@@ -307,6 +315,10 @@ local defaults; do
             return {
                 Fire = function()
                     callback();
+                end,
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
                 end
             }
         end
@@ -387,7 +399,12 @@ local defaults; do
             end
             
             self:Resize();
-            return box
+            return {
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
+                end
+            };
         end
         
         function types:Bind(name, options, callback)
@@ -505,6 +522,13 @@ local defaults; do
             };
 
             self:Resize();
+            
+            return {
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
+                end
+            };
         end
     
         function types:Section(name)
@@ -544,6 +568,13 @@ local defaults; do
             });
         
             self:Resize();
+            
+            return {
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
+                end
+            };
         end
 
         function types:Slider(name, options, callback)
@@ -705,6 +736,10 @@ local defaults; do
                     overlay.Container.ValueLabel.Text  = number
                     location[flag] = number
                     callback(number)
+                end,
+                Destroy = function(self)
+                    check:Destroy();
+                    self:Resize();
                 end
             }
         end 
@@ -822,7 +857,13 @@ local defaults; do
                 rebuild("")
             end
             self:Resize();
-            return reload, box:FindFirstChild('Box');
+            return {
+                Reload = reload,
+                Destroy = function(self)
+                    box:Destroy();
+                    self:Resize();
+                end
+            };
         end
         
         function types:Dropdown(name, options, callback)
@@ -984,6 +1025,10 @@ local defaults; do
 
             return {
                 Refresh = reload;
+                Destroy = function(self)
+                    object:Destroy();
+                    self:Resize();
+                end
             }
         end
     end
