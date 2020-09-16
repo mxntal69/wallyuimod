@@ -13,7 +13,7 @@ local lower = string.lower;
 local nUDim2 = UDim2.new;
 local rgb = Color3.fromRGB;
 local clamp = math.clamp;
-local floor = math.floop;
+local floor = math.floor;
 local v2new = Vector2.new;
 
 local mb1 = Enum.UserInputType.MouseButton1;
@@ -1179,3 +1179,4 @@ local defaults; do
 end
 
 return library
+
